@@ -1,7 +1,12 @@
 <div class="product-list-container">
-  <div class="product-list">
-    @for (product of productsList; track product.id) {
-      <app-product [product]="product"></app-product>
-    }
-  </div>
+  @if (isLoading) {
+    <p>Products are loading...</p>
+  }
+  @if (!errorMessage && !isLoading) {
+    <div class="product-list">
+      @for (product of productsList; track product.id) {
+        <app-product [product]="product"></app-product>
+      }
+    </div>
+  }
 </div>
