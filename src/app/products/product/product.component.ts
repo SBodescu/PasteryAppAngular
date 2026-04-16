@@ -11,6 +11,6 @@ import { Product } from './product.model';
 export class ProductComponent implements OnInit {
   @Input({ required: true }) product!: Product;
   ngOnInit(): void {
-    console.log(this.product);
+    //console.log(this.product);
   }
 }
