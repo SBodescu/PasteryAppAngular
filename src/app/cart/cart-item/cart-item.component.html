@@ -1,0 +1,11 @@
+<div class="cart-item-card">
+  <div class="item-img">
+    <img [src]="cartItem.image_url" />
+  </div>
+  <div class="item-details">
+    <h3>{{ cartItem.name }}</h3>
+    <p>Qty: {{ cartItem.quantity }}</p>
+    <span class="item-price">{{ cartItem.quantity * cartItem.price }} RON</span>
+  </div>
+  <button (click)="onRemoveItem(cartItem)" class="remove-btn">Remove</button>
+</div>
