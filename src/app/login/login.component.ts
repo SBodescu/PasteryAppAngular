@@ -19,12 +19,10 @@ export class LoginComponent {
   onSubmit() {
     this.loginService
       .signInWithEmail({ email: this.email, password: this.password })
-      .then((response) => {
-        if (response.error) {
-          console.error('Login failed:', response.error.message);
-        } else {
-          console.log('Login successful:', response.data);
-        }
+      .subscribe({
+        next: (data) => {
+          console.log(data.user);
+        },
       });
     this.router.navigate(['/catalogue']);
   }

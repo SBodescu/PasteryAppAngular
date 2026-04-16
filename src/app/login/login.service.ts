@@ -2,29 +2,57 @@ import { Injectable } from '@angular/core';
 import { createClient, SupabaseClient } from '@supabase/supabase-js';
 import { environment } from '../../../api/supabaseClient';
 import { LoginPayload } from '../../types/user.model';
+import { BehaviorSubject, from, map, tap } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class LoginService {
   private readonly supabase: SupabaseClient;
+  private currentUserSubject = new BehaviorSubject<any | null>(null);
+  currentUser$ = this.currentUserSubject.asObservable();
   constructor() {
     this.supabase = createClient(
       environment.supabaseUrl,
       environment.supabaseKey,
     );
+    console.log(this.currentUser$);
   }
-  async signInWithEmail(payload: LoginPayload) {
-    return await this.supabase.auth.signInWithPassword({
+  signInWithEmail(payload: LoginPayload) {
+    const authPromise = this.supabase.auth.signInWithPassword({
       email: payload.email,
       password: payload.password,
     });
+    return from(authPromise).pipe(
+      map(({ data, error }) => {
+        if (error) throw error;
+        return data;
+      }),
+      tap((data) => {
+        this.currentUserSubject.next(data.user);
+      }),
+    );
   }
-  async getUser() {
-    return await this.supabase.auth.getUser();
+  getUser() {
+    return from(this.supabase.auth.getUser()).pipe(
+      map(({ data, error }) => {
+        if (error) throw error;
+        return data.user;
+      }),
+      tap((user) => {
+        this.currentUserSubject.next(user);
+      }),
+    );
   }
 
-  async signOut() {
-    return await this.supabase.auth.signOut();
+  signOut() {
+    return from(this.supabase.auth.signOut()).pipe(
+      map(({ error }) => {
+        if (error) throw error;
+      }),
+      tap(() => {
+        this.currentUserSubject.next(null);
+      }),
+    );
   }
 }
