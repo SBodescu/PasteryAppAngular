@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
-import { LoginService } from './login.service';
 import { Router } from '@angular/router';
+import { AuthService } from '../../services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -13,11 +13,11 @@ export class LoginComponent {
   email = '';
   password = '';
 
-  private loginService = inject(LoginService);
+  private authService = inject(AuthService);
   private router = inject(Router);
 
   onSubmit() {
-    this.loginService
+    this.authService
       .signInWithEmail({ email: this.email, password: this.password })
       .subscribe({
         next: (data) => {

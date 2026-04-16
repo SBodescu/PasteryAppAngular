@@ -4,10 +4,20 @@
   </div>
   <div class="nav-links">
     <a class="login-btn" routerLink="/catalogue"> Catalog </a>
-    <a class="login-btn" routerLink="/login"> Login </a>
-    <a class="login-btn"> My cart </a>
-    <a class="login-btn"> Inventory </a>
-    <a class="login-btn"> Orders </a>
-    <button class="login-btn">Logout</button>
+    @if (!isAuthenticated) {
+      <a class="login-btn" routerLink="/login"> Login </a>
+    }
+
+    @if (isAuthenticated) {
+      @if (role === "user") {
+        <a class="login-btn" routerLink="/cart"> My cart </a>
+      }
+      @if (role === "admin" || role === "worker") {
+        <a class="login-btn"> Inventory </a>
+        <a class="login-btn"> Orders </a>
+      }
+      <button (click)="onLogout()" class="login-btn">Logout</button>
+    }
+    <p>{{ role }}</p>
   </div>
 </nav>

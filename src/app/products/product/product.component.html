@@ -5,5 +5,8 @@
   <div class="product-info">
     <p class="description">{{ product.description }}</p>
     <p class="price">{{ product.price }}</p>
+    @if (isAuthenticated && role === "user") {
+      <button (click)="onAddtoCart()" class="order-btn">Add to cart</button>
+    }
   </div>
 </app-card>
