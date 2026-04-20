@@ -5,7 +5,7 @@ import { Product } from '../../product.model';
 
 @Component({
   selector: 'app-delete-product-modal',
-  imports: [ModalComponent],
+  imports: [],
   templateUrl: './delete-product-modal.component.html',
   styleUrl: './delete-product-modal.component.scss',
 })

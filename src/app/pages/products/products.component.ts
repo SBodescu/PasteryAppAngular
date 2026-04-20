@@ -28,7 +28,7 @@ export class ProductsComponent implements OnInit {
     });
     const prodSubscription = this.productsService.products$.subscribe({
       next: (data) => {
-        this.productsList = data;
+        this.productsList = data.filter((p) => p.isDeleted !== true);
       },
     });
     this.destroyRef.onDestroy(() => {

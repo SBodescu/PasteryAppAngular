@@ -4,8 +4,16 @@
   <div class="inventory-content">
     <div class="inventory-buttons">
       <button class="inventory-btn">Add Product</button>
-      <button class="inventory-btn">Recently Deleted</button>
+      <button class="inventory-btn" (click)="onOpenClick()">
+        Recently Deleted
+      </button>
     </div>
     <app-products></app-products>
   </div>
+  @if (showDeletedItemsModal) {
+    <app-recently-deleted-modal
+      [deletedProducts]="deletedProducts"
+      (closeModal)="showDeletedItemsModal = false"
+    ></app-recently-deleted-modal>
+  }
 </div>

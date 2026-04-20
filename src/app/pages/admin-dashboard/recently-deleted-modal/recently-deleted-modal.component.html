@@ -1,0 +1,18 @@
+<app-modal>
+  <h2>Recently Deleted</h2>
+  <div class="deleted-items-list">
+    @for (product of deletedProducts; track product.id) {
+      <div class="deleted-item">
+        <div class="item-info">
+          <h3>{{ product.name }}</h3>
+        </div>
+        <button class="restore-btn" (click)="onRestore(product)">
+          Restore
+        </button>
+      </div>
+    }
+  </div>
+  <div class="modal-buttons">
+    <button class="cancel-btn" (click)="onCancel()">Close</button>
+  </div>
+</app-modal>

@@ -14,7 +14,7 @@ export class ProductsService {
   products$ = this.productsSubject.asObservable();
 
   fetchProducts() {
-    const url = `${this.apiUrl}?select=*&isDeleted=is.false`;
+    const url = `${this.apiUrl}?select=*`;
     return this.httpClient.get<Product[]>(url).pipe(
       tap({
         next: (products) => this.productsSubject.next(products),
@@ -35,8 +35,8 @@ export class ProductsService {
       tap(() => {
         const currentProducts = this.productsSubject.getValue();
 
-        const updatedProducts = currentProducts.filter(
-          (p) => p.id !== product.id,
+        const updatedProducts = currentProducts.map((p) =>
+          p.id === product.id ? { ...p, isDeleted: true } : p,
         );
         this.productsSubject.next(updatedProducts);
       }),
@@ -44,6 +44,27 @@ export class ProductsService {
         console.error('Supabase Error:', error);
         return throwError(
           () => new Error('Something went wrong with deleting the product'),
+        );
+      }),
+    );
+  }
+
+  restoreProduct(product: Partial<Product>) {
+    const url = `${this.apiUrl}?id=eq.${product.id}`;
+    const payload = { ...product, isDeleted: false };
+    return this.httpClient.patch(url, payload).pipe(
+      tap(() => {
+        const currentProducts = this.productsSubject.getValue();
+
+        const updatedProducts = currentProducts.map((p) =>
+          p.id === product.id ? { ...p, isDeleted: false } : p,
+        );
+        this.productsSubject.next(updatedProducts);
+      }),
+      catchError((error) => {
+        console.error('Supabase Error:', error);
+        return throwError(
+          () => new Error('Something went wrong with restoring the product'),
         );
       }),
     );
