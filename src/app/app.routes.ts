@@ -1,8 +1,10 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ProductsComponent } from './products/products.component';
-import { CartComponent } from './cart/cart.component';
+import { HomeComponent } from './pages/home/home.component';
+import { LoginComponent } from './pages/login/login.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { CartComponent } from './pages/cart/cart.component';
+import { authGuard } from './shared/guards/auth.guard';
+import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 
 export const routes: Routes = [
   {
@@ -24,5 +26,11 @@ export const routes: Routes = [
     path: 'cart',
     component: CartComponent,
     title: 'Your Cart',
+    canActivate: [authGuard],
+  },
+  {
+    path: 'admin-dashboard',
+    component: AdminDashboardComponent,
+    title: 'Admin Dashboard',
   },
 ];
