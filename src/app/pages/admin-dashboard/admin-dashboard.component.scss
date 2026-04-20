@@ -1,0 +1,65 @@
+@use "../../shared/styles/variables" as *;
+
+.admin-dashboard-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  width: 100%;
+
+  h1 {
+    font-size: 2.5rem;
+    color: $primary-dark;
+    margin-bottom: 15px;
+    font-weight: 800;
+  }
+
+  p {
+    color: $text-muted;
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    line-height: 1.5;
+  }
+  .inventory-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+
+    .inventory-buttons {
+      display: flex;
+      flex-direction: row;
+      gap: 1rem;
+      .inventory-btn {
+        background: linear-gradient(90deg, $accent-pink 0%, #f785d4 100%);
+        color: white;
+        border: none;
+        padding: 18px 40px;
+        border-radius: 20px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        box-shadow: 0 10px 25px rgba(219, 133, 247, 0.4);
+        cursor: pointer;
+      }
+    }
+
+    .add-product-btn {
+      background: linear-gradient(90deg, $accent-pink 0%, #f785d4 100%);
+      color: white;
+      border: none;
+      padding: 18px 40px;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      font-weight: 600;
+      box-shadow: 0 10px 25px rgba(219, 133, 247, 0.4);
+      cursor: pointer;
+    }
+    .product-list {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 20px;
+    }
+  }
+}

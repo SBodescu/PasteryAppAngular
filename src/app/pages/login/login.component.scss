@@ -1,0 +1,138 @@
+@use "../../shared/styles/variables" as *;
+
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 80vh;
+  width: 100%;
+
+  .login-form {
+    background: $white;
+    width: 95%;
+    max-width: 850px;
+    min-height: 550px;
+    padding: 60px 70px;
+    border-radius: 40px;
+    box-shadow: 0 25px 50px rgba(39, 48, 90, 0.08);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    h2 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      margin-bottom: 50px;
+      color: $primary-dark;
+    }
+
+    .input-group {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 25px;
+
+      input {
+        width: 100%;
+        background: #f1f4fa;
+        border: 2px solid transparent;
+        padding: 22px 50px;
+        border-radius: 20px;
+        margin-bottom: 8px;
+        font-size: 1.15rem;
+        color: $primary-dark;
+        outline: none;
+        transition: all 0.3s ease;
+
+        &::placeholder {
+          color: $text-muted;
+        }
+
+        &.input-error {
+          border-color: #ff4d4d;
+          background-color: #fff0f0;
+        }
+      }
+
+      .field-error {
+        color: #ff4d4d;
+        font-size: 0.95rem;
+        text-align: left;
+        padding-left: 20px;
+        font-weight: 600;
+      }
+    }
+
+    button {
+      width: 100%;
+      background: linear-gradient(90deg, $accent-pink 0%, #f785d4 100%);
+      color: white;
+      border: none;
+      padding: 22px;
+      border-radius: 20px;
+      font-size: 1.3rem;
+      font-weight: 700;
+      cursor: pointer;
+      box-shadow: 0 15px 30px rgba(219, 133, 247, 0.3);
+      margin-top: 25px;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: scale(1.02);
+      }
+
+      &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
+      }
+    }
+
+    .error-message {
+      color: #ff4d4d;
+      background: #ffe6e6;
+      padding: 18px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      font-size: 1.1rem;
+    }
+
+    @media (max-width: 900px) {
+      padding: 50px 50px;
+      min-height: auto;
+
+      h2 {
+        font-size: 2.4rem;
+        margin-bottom: 35px;
+      }
+
+      .input-group input {
+        padding: 20px 25px;
+        font-size: 1.1rem;
+      }
+
+      button {
+        padding: 20px;
+        font-size: 1.2rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      padding: 40px 25px;
+
+      h2 {
+        font-size: 1.8rem;
+        margin-bottom: 25px;
+      }
+
+      .input-group input {
+        padding: 16px 20px;
+        font-size: 1rem;
+      }
+
+      button {
+        padding: 16px;
+        font-size: 1.1rem;
+      }
+    }
+  }
+}
