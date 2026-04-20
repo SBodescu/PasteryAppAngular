@@ -1,0 +1,118 @@
+@use "../../../shared/styles/variables" as *;
+
+h2 {
+  margin-bottom: 25px;
+  color: $primary-dark;
+  font-size: 1.8rem;
+  font-weight: 800;
+  text-align: center;
+}
+
+.deleted-items-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-height: 400px;
+  overflow-y: auto;
+  margin-bottom: 25px;
+  padding-right: 10px;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+  }
+  &::-webkit-scrollbar-thumb {
+    background: #f0f0f0;
+    border-radius: 10px;
+  }
+
+  .empty-msg {
+    text-align: center;
+    color: $text-muted;
+    font-style: italic;
+  }
+
+  .deleted-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #fcfcfc;
+    border: 2px solid #f0f0f0;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+
+    &:hover {
+      border-color: rgba($accent-pink, 0.3);
+      transform: translateX(5px);
+    }
+
+    .item-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      h3 {
+        margin: 0;
+        font-size: 1.1rem;
+        color: $primary-dark;
+        font-weight: 700;
+      }
+      p {
+        font-size: 0.8rem;
+        color: $text-muted;
+      }
+    }
+
+    .restore-btn {
+      background: rgba($accent-pink, 0.1);
+      color: $accent-pink;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 12px;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s;
+
+      &:hover {
+        background: $accent-pink;
+        color: white;
+      }
+    }
+  }
+}
+
+.modal-buttons {
+  display: flex;
+  margin-top: 10px;
+
+  .cancel-btn {
+    flex: 1;
+    padding: 15px;
+    border-radius: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    background: #f5f5f5;
+    color: $text-muted;
+    border: none;
+    transition: all 0.2s;
+
+    &:hover {
+      background: #eeeeee;
+    }
+
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
