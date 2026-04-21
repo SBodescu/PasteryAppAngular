@@ -6,10 +6,11 @@ import { RouterLink } from '@angular/router';
 import { OrdersService } from '../orders/orders.service';
 import { Order } from '../orders/order/order.model';
 import { AuthService } from '../../shared/services/auth.service';
+import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @Component({
   selector: 'app-cart',
-  imports: [CartItemComponent, RouterLink],
+  imports: [CartItemComponent, RouterLink, ConfirmationModalComponent],
   templateUrl: './cart.component.html',
   styleUrl: './cart.component.scss',
 })
@@ -23,6 +24,7 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   totalCartValue = 0;
   userId: string = '';
+  isOpened: boolean = false;
 
   ngOnInit(): void {
     const authSubscription = this.authService.currentUser$.subscribe({
@@ -52,5 +54,7 @@ export class CartComponent implements OnInit {
     this.orderService.addOrder(this.order).subscribe({
       next: (order) => console.log('Order sent'),
     });
+    this.cartService.clearCart();
+    this.isOpened = true;
   }
 }
