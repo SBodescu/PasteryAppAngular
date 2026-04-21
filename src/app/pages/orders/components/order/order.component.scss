@@ -1,0 +1,150 @@
+@use "../../../../shared/styles/variables" as *;
+
+.order-card {
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border: 1px solid #f1f1f1;
+  transition: transform 0.2s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
+  }
+
+  .order-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #f8f8f8;
+    padding-bottom: 15px;
+
+    h3 {
+      margin: 0;
+      font-size: 1.1rem;
+      color: $primary-dark;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+
+    .status-badge {
+      padding: 6px 14px;
+      border-radius: 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+
+      &.pending {
+        background: rgba(255, 183, 77, 0.15);
+        color: #f57c00;
+      }
+
+      &.accepted {
+        background: rgba(129, 199, 132, 0.15);
+        color: #388e3c;
+      }
+
+      &.rejected {
+        background: rgba(229, 115, 115, 0.15);
+        color: #d32f2f;
+      }
+    }
+  }
+
+  .order-body {
+    .items-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+
+      li {
+        display: flex;
+        justify-content: space-between;
+        padding: 8px 0;
+        font-size: 0.95rem;
+        color: #555;
+        border-bottom: 1px dashed #eee;
+        gap: 1.5 rem;
+
+        &:last-child {
+          border-bottom: none;
+        }
+
+        .item-name {
+          font-weight: 500;
+        }
+
+        .item-price {
+          color: $primary-dark;
+          font-weight: 600;
+        }
+      }
+    }
+  }
+
+  .order-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 10px;
+
+    .total-section {
+      span {
+        display: block;
+        font-size: 0.8rem;
+        color: #999;
+      }
+      .total-amount {
+        font-size: 1.3rem;
+        font-weight: 800;
+        color: $primary-dark;
+      }
+    }
+
+    .order-actions {
+      display: flex;
+      gap: 12px;
+
+      button {
+        padding: 10px 20px;
+        border-radius: 12px;
+        font-weight: 700;
+        font-size: 0.9rem;
+        cursor: pointer;
+        border: none;
+        transition: all 0.2s;
+
+        &.accept-btn {
+          background: $button-bg;
+          color: white;
+          &:hover {
+            filter: brightness(0.9);
+          }
+        }
+
+        &.reject-btn {
+          background: #f8f9fa;
+          color: #adb5bd;
+          border: none;
+          padding: 15px 30px;
+          border-radius: 15px;
+          font-weight: 600;
+          cursor: pointer;
+          transition: all 0.2s;
+
+          &:hover {
+            background: #ff6b6b;
+            color: white;
+          }
+        }
+      }
+    }
+  }
+}

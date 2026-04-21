@@ -1,8 +1,8 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { ProductsService } from '../products/products.service';
+import { ProductsService } from '../products/services/products.service';
 import { ProductsComponent } from '../products/products.component';
-import { Product } from '../products/product/product.model';
-import { RecentlyDeletedModalComponent } from './recently-deleted-modal/recently-deleted-modal.component';
+import { Product } from '../products/models/product.model';
+import { RecentlyDeletedModalComponent } from './components/recently-deleted-modal/recently-deleted-modal.component';
 
 @Component({
   selector: 'app-admin-dashboard',

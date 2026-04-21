@@ -1,9 +1,9 @@
 import { Component, DestroyRef, inject, Input, OnInit } from '@angular/core';
-import { CardComponent } from '../../../shared/components/card/card.component';
-import { Product } from './product.model';
-import { CartService } from '../../cart/services/cart.service';
-import { CartItem } from '../../cart/models/cart-item.model';
-import { AuthService } from '../../../shared/services/auth.service';
+import { CardComponent } from '../../../../shared/components/card/card.component';
+import { Product } from '../../models/product.model';
+import { CartService } from '../../../cart/services/cart.service';
+import { CartItem } from '../../../cart/models/cart-item.model';
+import { AuthService } from '../../../../shared/services/auth.service';
 import { DeleteProductModalComponent } from './components/delete-product-modal/delete-product-modal.component';
 
 @Component({

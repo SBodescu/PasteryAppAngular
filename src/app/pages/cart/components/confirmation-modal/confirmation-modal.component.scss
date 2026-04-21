@@ -1,21 +1,12 @@
-@use "../../shared/styles/variables" as *;
-.not-found-content {
+@use "../../../../shared/styles/variables" as *;
+.confirmation-modal {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
-  h1 {
-    font-size: 2.5rem;
+  h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
     color: $primary-dark;
-    margin-bottom: 15px;
-    font-weight: 800;
-  }
-
-  p {
-    color: $text-muted;
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    line-height: 1.5;
   }
   button {
     padding: 12px 25px;
