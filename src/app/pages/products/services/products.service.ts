@@ -1,7 +1,7 @@
 import { Injectable, inject } from '@angular/core';
-import { Product } from './product/product.model';
+import { Product } from '../models/product.model';
 import { HttpClient } from '@angular/common/http';
-import { environment } from '../../../../api/supabaseClient';
+import { environment } from '../../../../../api/supabaseClient';
 import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 
 @Injectable({

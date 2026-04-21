@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ProductComponent } from './product/product.component';
-import { Product } from './product/product.model';
-import { ProductsService } from './products.service';
+import { ProductComponent } from './components/product/product.component';
+import { Product } from './models/product.model';
+import { ProductsService } from './services/products.service';
 
 @Component({
   selector: 'app-products',

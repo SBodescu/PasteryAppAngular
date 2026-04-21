@@ -1,6 +1,6 @@
 import { Component, inject, Input } from '@angular/core';
-import { Order } from './order.model';
-import { OrdersService } from '../orders.service';
+import { Order } from '../../models/order.model';
+import { OrdersService } from '../../services/orders.service';
 
 @Component({
   selector: 'app-order',

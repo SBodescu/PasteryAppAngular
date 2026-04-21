@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { OrderComponent } from './order/order.component';
-import { Order } from './order/order.model';
-import { OrdersService } from './orders.service';
+import { OrderComponent } from './components/order/order.component';
+import { Order } from './models/order.model';
+import { OrdersService } from './services/orders.service';
 
 @Component({
   selector: 'app-orders',

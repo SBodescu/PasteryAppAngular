@@ -3,8 +3,8 @@ import { CartItemComponent } from './components/cart-item/cart-item.component';
 import { CartService } from './services/cart.service';
 import { CartItem } from './models/cart-item.model';
 import { RouterLink } from '@angular/router';
-import { OrdersService } from '../orders/orders.service';
-import { Order } from '../orders/order/order.model';
+import { OrdersService } from '../orders/services/orders.service';
+import { Order } from '../orders/models/order.model';
 import { AuthService } from '../../shared/services/auth.service';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 

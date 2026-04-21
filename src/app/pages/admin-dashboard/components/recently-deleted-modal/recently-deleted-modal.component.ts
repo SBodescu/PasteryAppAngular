@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Output, Input, inject } from '@angular/core';
-import { ModalComponent } from '../../../shared/components/modal/modal.component';
-import { Product } from '../../products/product/product.model';
-import { ProductsService } from '../../products/products.service';
+import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+import { Product } from '../../../products/models/product.model';
+import { ProductsService } from '../../../products/services/products.service';
 
 @Component({
   selector: 'app-recently-deleted-modal',
