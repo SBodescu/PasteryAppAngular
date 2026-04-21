@@ -1,12 +1,17 @@
-<div class="product-list-container">
-  @if (isLoading) {
-    <p>Products are loading...</p>
-  }
-  @if (!errorMessage && !isLoading) {
-    <div class="product-list">
-      @for (product of productsList; track product.id) {
-        <app-product [product]="product"></app-product>
+<div class="dashboard-view">
+  <h1 class="main-title">Desserts</h1>
+  <div class="products-list">
+    <div class="product-list-container">
+      @if (isLoading) {
+        <p>Products are loading...</p>
+      }
+      @if (!errorMessage && !isLoading) {
+        <div class="product-list">
+          @for (product of productsList; track product.id) {
+            <app-product [product]="product"></app-product>
+          }
+        </div>
       }
     </div>
-  }
+  </div>
 </div>

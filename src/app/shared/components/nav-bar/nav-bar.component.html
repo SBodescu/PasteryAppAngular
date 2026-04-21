@@ -14,7 +14,7 @@
       }
       @if (role === "admin" || role === "worker") {
         <a class="login-btn" routerLink="/admin-dashboard"> Inventory </a>
-        <a class="login-btn"> Orders </a>
+        <a class="login-btn" routerLink="/orders"> Orders </a>
       }
       <button (click)="onLogout()" class="login-btn">Logout</button>
     }

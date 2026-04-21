@@ -1,0 +1,37 @@
+@for (order of ordersList; track order.id) {
+  <div class="order-card">
+    <div class="order-header">
+      <h3>Order {{ order.id.slice(0, 8) }}</h3>
+      <span class="status-badge {{ order.status }} ">{{ order.status }}</span>
+    </div>
+
+    <div class="order-body">
+      <ul class="items-list">
+        @for (item of order.items; track item.id) {
+          <li class="item-price-section">
+            <span class="item-name">
+              {{ item.name }} x {{ item.quantity }}
+            </span>
+            <span class="item-price">{{ item.price * item.quantity }} RON</span>
+          </li>
+        }
+      </ul>
+    </div>
+
+    <div class="order-footer">
+      <div class="total-section">
+        <span>Total</span>
+        <div class="total-amount">RON</div>
+      </div>
+
+      <div class="order-actions">
+        <button class="reject-btn" (click)="onChangeStatus('rejected', order)">
+          Reject
+        </button>
+        <button class="accept-btn" (click)="onChangeStatus('accepted', order)">
+          Accept
+        </button>
+      </div>
+    </div>
+  </div>
+}

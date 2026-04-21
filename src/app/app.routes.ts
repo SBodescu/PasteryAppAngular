@@ -6,6 +6,7 @@ import { CartComponent } from './pages/cart/cart.component';
 import { adminGuard, authGuard } from './shared/guards/auth.guard';
 import { AdminDashboardComponent } from './pages/admin-dashboard/admin-dashboard.component';
 import { NotFoundComponent } from './pages/not-found/not-found.component';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 export const routes: Routes = [
   {
@@ -33,6 +34,12 @@ export const routes: Routes = [
     path: 'admin-dashboard',
     component: AdminDashboardComponent,
     title: 'Admin Dashboard',
+    canActivate: [authGuard, adminGuard],
+  },
+  {
+    path: 'orders',
+    component: OrdersComponent,
+    title: 'Orders',
     canActivate: [authGuard, adminGuard],
   },
   {
