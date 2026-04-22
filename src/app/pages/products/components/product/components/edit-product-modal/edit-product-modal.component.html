@@ -1,1 +1,58 @@
-<p>edit-product-modal works!</p>
+<app-modal>
+  <h2>{{ formTitle }} Product</h2>
+  <form (ngSubmit)="onSubmit()">
+    <div class="input-group">
+      <input
+        type="text"
+        placeholder="Product Name"
+        name="name"
+        [(ngModel)]="formData.name"
+      />
+    </div>
+    <div class="input-group">
+      <input
+        type="number"
+        placeholder="Price"
+        name="price"
+        [(ngModel)]="formData.price"
+      />
+    </div>
+    <div class="input-group">
+      <textarea
+        placeholder="Description"
+        name="description"
+        [(ngModel)]="formData.description"
+      ></textarea>
+    </div>
+    <div class="input-group">
+      <input
+        type="text"
+        placeholder="Image URL"
+        name="image_url"
+        [(ngModel)]="formData.image_url"
+      />
+    </div>
+    <div class="input-group">
+      <label>Category:</label>
+      <div class="radio-group">
+        @for (category of categories; track category) {
+          <label>
+            <input
+              type="radio"
+              name="category"
+              [value]="category.toLowerCase()"
+              [(ngModel)]="formData.category"
+            />
+            {{ category }}
+          </label>
+        }
+      </div>
+    </div>
+    <div class="modal-buttons">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="save-btn">Save Changes</button>
+    </div>
+  </form>
+</app-modal>

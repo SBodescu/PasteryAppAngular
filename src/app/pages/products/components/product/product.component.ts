@@ -5,10 +5,15 @@ import { CartService } from '../../../cart/services/cart.service';
 import { CartItem } from '../../../cart/models/cart-item.model';
 import { AuthService } from '../../../../shared/services/auth.service';
 import { DeleteProductModalComponent } from './components/delete-product-modal/delete-product-modal.component';
+import { EditProductModalComponent } from './components/edit-product-modal/edit-product-modal.component';
 
 @Component({
   selector: 'app-product',
-  imports: [CardComponent, DeleteProductModalComponent],
+  imports: [
+    CardComponent,
+    DeleteProductModalComponent,
+    EditProductModalComponent,
+  ],
   templateUrl: './product.component.html',
   styleUrl: './product.component.scss',
 })
@@ -18,8 +23,10 @@ export class ProductComponent implements OnInit {
   private authService = inject(AuthService);
   private destroyRef = inject(DestroyRef);
   role: string = '';
+  formTitle: string = 'Edit';
   isAuthenticated: boolean = false;
   showDeleteModal: boolean = false;
+  showEditModal: boolean = false;
 
   ngOnInit(): void {
     const subscription = this.authService.currentUser$.subscribe({
@@ -47,7 +54,11 @@ export class ProductComponent implements OnInit {
     this.cartService.addToCart(cartItem);
   }
 
-  onDeleteClick(): void {
+  onDeleteClick() {
     this.showDeleteModal = true;
+  }
+
+  onEditClick() {
+    this.showEditModal = true;
   }
 }

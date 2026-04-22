@@ -3,13 +3,20 @@
   <p>Manage all products in the inventory.</p>
   <div class="inventory-content">
     <div class="inventory-buttons">
-      <button class="inventory-btn">Add Product</button>
+      <button class="inventory-btn" (click)="onAddProduct()">
+        Add Product
+      </button>
       <button class="inventory-btn" (click)="onOpenClick()">
         Recently Deleted
       </button>
     </div>
     <app-products></app-products>
   </div>
+  @if (showAddModal) {
+    <app-edit-product-modal
+      (closeModal)="showAddModal = false"
+    ></app-edit-product-modal>
+  }
   @if (showDeletedItemsModal) {
     <app-recently-deleted-modal
       [deletedProducts]="deletedProducts"
