@@ -19,7 +19,7 @@
   }
   @if (showEditModal) {
     <app-edit-product-modal
-      [formTitle]="formTitle"
+      [product]="product"
       (closeModal)="showEditModal = false"
     ></app-edit-product-modal>
   }

@@ -6,7 +6,7 @@
         type="text"
         placeholder="Product Name"
         name="name"
-        [(ngModel)]="productAdded.name"
+        [(ngModel)]="formData.name"
       />
     </div>
     <div class="input-group">
@@ -14,14 +14,14 @@
         type="number"
         placeholder="Price"
         name="price"
-        [(ngModel)]="productAdded.price"
+        [(ngModel)]="formData.price"
       />
     </div>
     <div class="input-group">
       <textarea
         placeholder="Description"
         name="description"
-        [(ngModel)]="productAdded.description"
+        [(ngModel)]="formData.description"
       ></textarea>
     </div>
     <div class="input-group">
@@ -29,7 +29,7 @@
         type="text"
         placeholder="Image URL"
         name="image_url"
-        [(ngModel)]="productAdded.image_url"
+        [(ngModel)]="formData.image_url"
       />
     </div>
     <div class="input-group">
@@ -40,8 +40,8 @@
             <input
               type="radio"
               name="category"
-              value="{{ category }}"
-              [(ngModel)]="productAdded.category"
+              [value]="category.toLowerCase()"
+              [(ngModel)]="formData.category"
             />
             {{ category }}
           </label>
