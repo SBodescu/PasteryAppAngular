@@ -1,4 +1,5 @@
 <div class="dashboard-view">
+  <app-filters (filtersChanged)="onFiltersUpdated($event)"></app-filters>
   <h1 class="main-title">Desserts</h1>
   <div class="products-list">
     <div class="product-list-container">

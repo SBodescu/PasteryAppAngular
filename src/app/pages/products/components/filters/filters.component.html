@@ -1,0 +1,47 @@
+<div class="filters-container">
+  <div class="search-filter">
+    <input
+      type="text"
+      name="search"
+      placeholder="Search products..."
+      [(ngModel)]="currentFilters.search"
+      (ngModelChange)="onFilterChange()"
+    />
+  </div>
+  <div class="category-filter">
+    <label htmlFor="category">Category:</label>
+    <select
+      name="category"
+      [(ngModel)]="currentFilters.category"
+      (ngModelChange)="onFilterChange()"
+    >
+      @for (category of categories; track category) {
+        <option value="{{ category }}">{{ category }}</option>
+      }
+    </select>
+  </div>
+  <div class="price-filter">
+    <label htmlFor="price">Price:</label>
+    <select
+      name="price"
+      [(ngModel)]="currentFilters.price"
+      (ngModelChange)="onFilterChange()"
+    >
+      <option value="">Default</option>
+      <option value="asc">Low to High</option>
+      <option value="desc">High to Low</option>
+    </select>
+  </div>
+  <div class="sort-alphabetically-filter">
+    <label htmlFor="alphabetical">Sort:</label>
+    <select
+      name="alphabetical"
+      [(ngModel)]="currentFilters.alphabetical"
+      (ngModelChange)="onFilterChange()"
+    >
+      <option value="none">Default</option>
+      <option value="asc">A to Z</option>
+      <option value="desc">Z to A</option>
+    </select>
+  </div>
+</div>
