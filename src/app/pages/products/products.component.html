@@ -7,11 +7,20 @@
       }
       @if (!errorMessage && !isLoading) {
         <div class="product-list">
-          @for (product of productsList; track product.id) {
+          @for (product of displayedItems; track product.id) {
             <app-product [product]="product"></app-product>
           }
         </div>
       }
+      <div class="pagination">
+        <button [disabled]="page === 0" (click)="pageDown()">Back</button>
+
+        <span> Page {{ page + 1 }} of {{ totalPages }} </span>
+
+        <button [disabled]="page >= totalPages - 1" (click)="pageUp()">
+          Next
+        </button>
+      </div>
     </div>
   </div>
 </div>
