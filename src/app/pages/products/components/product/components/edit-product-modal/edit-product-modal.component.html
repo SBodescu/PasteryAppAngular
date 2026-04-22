@@ -1,24 +1,51 @@
 <app-modal>
-  <h2>Edit Product</h2>
-  <form>
+  <h2>{{ formTitle }} Product</h2>
+  <form (ngSubmit)="onSubmit()">
     <div class="input-group">
-      <input type="text" placeholder="Product Name" />
+      <input
+        type="text"
+        placeholder="Product Name"
+        name="name"
+        [(ngModel)]="productAdded.name"
+      />
     </div>
     <div class="input-group">
-      <input type="number" placeholder="Price" />
+      <input
+        type="number"
+        placeholder="Price"
+        name="price"
+        [(ngModel)]="productAdded.price"
+      />
     </div>
     <div class="input-group">
-      <textarea placeholder="Description"></textarea>
+      <textarea
+        placeholder="Description"
+        name="description"
+        [(ngModel)]="productAdded.description"
+      ></textarea>
     </div>
     <div class="input-group">
-      <input type="text" placeholder="Image URL" />
+      <input
+        type="text"
+        placeholder="Image URL"
+        name="image_url"
+        [(ngModel)]="productAdded.image_url"
+      />
     </div>
     <div class="input-group">
       <label>Category:</label>
       <div class="radio-group">
-        <label>
-          <input type="radio" name="category" />
-        </label>
+        @for (category of categories; track category) {
+          <label>
+            <input
+              type="radio"
+              name="category"
+              value="{{ category }}"
+              [(ngModel)]="productAdded.category"
+            />
+            {{ category }}
+          </label>
+        }
       </div>
     </div>
     <div class="modal-buttons">

@@ -19,6 +19,8 @@ export class AdminDashboardComponent implements OnInit {
   private productsService = inject(ProductsService);
   deletedProducts: Product[] = [];
   showDeletedItemsModal: boolean = false;
+  showAddModal: boolean = false;
+  formTitle: string = 'Add';
 
   ngOnInit(): void {
     const subscription = this.productsService.products$.subscribe({
@@ -32,6 +34,10 @@ export class AdminDashboardComponent implements OnInit {
 
   onOpenClick(): void {
     this.showDeletedItemsModal = true;
+  }
+
+  onAddProduct() {
+    this.showAddModal = true;
   }
 
   onRestoreProduct(product: Product) {

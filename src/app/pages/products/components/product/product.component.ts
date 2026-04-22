@@ -23,6 +23,7 @@ export class ProductComponent implements OnInit {
   private authService = inject(AuthService);
   private destroyRef = inject(DestroyRef);
   role: string = '';
+  formTitle: string = 'Edit';
   isAuthenticated: boolean = false;
   showDeleteModal: boolean = false;
   showEditModal: boolean = false;
