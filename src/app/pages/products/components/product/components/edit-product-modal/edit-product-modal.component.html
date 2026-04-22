@@ -1,1 +1,31 @@
-<p>edit-product-modal works!</p>
+<app-modal>
+  <h2>Edit Product</h2>
+  <form>
+    <div class="input-group">
+      <input type="text" placeholder="Product Name" />
+    </div>
+    <div class="input-group">
+      <input type="number" placeholder="Price" />
+    </div>
+    <div class="input-group">
+      <textarea placeholder="Description"></textarea>
+    </div>
+    <div class="input-group">
+      <input type="text" placeholder="Image URL" />
+    </div>
+    <div class="input-group">
+      <label>Category:</label>
+      <div class="radio-group">
+        <label>
+          <input type="radio" name="category" />
+        </label>
+      </div>
+    </div>
+    <div class="modal-buttons">
+      <button type="button" class="cancel-btn" (click)="onCancel()">
+        Cancel
+      </button>
+      <button type="submit" class="save-btn">Save Changes</button>
+    </div>
+  </form>
+</app-modal>

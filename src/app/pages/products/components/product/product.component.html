@@ -5,22 +5,27 @@
   <div class="product-info">
     <p class="description">{{ product.description }}</p>
     <p class="price">{{ product.price }}</p>
-    @if (isAuthenticated) {
-      @if (role === "user") {
-        <button (click)="onAddtoCart()" class="order-btn">Add to cart</button>
-      }
-      @if (role === "admin") {
-        <div class="admin-actions">
-          <button class="edit-btn">Edit</button>
-          <button class="delete-btn" (click)="onDeleteClick()">Delete</button>
-        </div>
-      }
-    }
-    @if (showDeleteModal) {
-      <app-delete-product-modal
-        [product]="product"
-        (closeModal)="showDeleteModal = false"
-      ></app-delete-product-modal>
-    }
   </div>
+  @if (isAuthenticated) {
+    @if (role === "user") {
+      <button (click)="onAddtoCart()" class="order-btn">Add to cart</button>
+    }
+    @if (role === "admin") {
+      <div class="admin-actions">
+        <button class="edit-btn" (click)="onEditClick()">Edit</button>
+        <button class="delete-btn" (click)="onDeleteClick()">Delete</button>
+      </div>
+    }
+  }
+  @if (showEditModal) {
+    <app-edit-product-modal
+      (closeModal)="showEditModal = false"
+    ></app-edit-product-modal>
+  }
+  @if (showDeleteModal) {
+    <app-delete-product-modal
+      [product]="product"
+      (closeModal)="showDeleteModal = false"
+    ></app-delete-product-modal>
+  }
 </app-card>

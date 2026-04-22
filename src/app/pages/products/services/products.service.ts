@@ -28,6 +28,22 @@ export class ProductsService {
     );
   }
 
+  addProduct(product: Product) {
+    return this.httpClient.post(this.apiUrl, product).pipe(
+      tap(() => {
+        const currentProducts = this.productsSubject.getValue();
+        const updatedProducts = [...currentProducts, product];
+        this.productsSubject.next(updatedProducts);
+      }),
+      catchError((error) => {
+        console.error('Supabase Error:', error);
+        return throwError(
+          () => new Error('Something went wrong with adding the product'),
+        );
+      }),
+    );
+  }
+
   deleteProduct(product: Partial<Product>) {
     const url = `${this.apiUrl}?id=eq.${product.id}`;
     const payload = { ...product, isDeleted: true };
