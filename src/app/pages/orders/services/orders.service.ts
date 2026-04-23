@@ -40,22 +40,24 @@ export class OrdersService {
     );
   }
 
-  changeOrderStatus(order: Partial<Order>, newStatus: string) {
+  changeOrderStatus(order: Order, newStatus: string) {
     const url = `${this.apiUrl}?id=eq.${order.id}`;
     const payload = { status: newStatus };
+
     return this.httpClient.patch<Order>(url, payload).pipe(
-      tap((order) => {
+      tap(() => {
         const currentOrders = this.ordersSubject.getValue();
 
-        const updatedOrders = currentOrders.map((o) =>
-          o.id === order.id ? { ...o, status: newStatus } : o,
-        );
+        const updatedOrders = currentOrders.map((o) => {
+          return o.id === order.id ? { ...o, status: newStatus } : o;
+        });
+
         this.ordersSubject.next(updatedOrders);
       }),
       catchError((error) => {
         console.error('Supabase Error:', error);
         return throwError(
-          () => new Error('Something went wrong with deleting the product'),
+          () => new Error('Something went wrong with editing the order status'),
         );
       }),
     );
