@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AuthService } from '../../shared/services/auth.service';
@@ -14,16 +14,18 @@ export class LoginComponent {
   password = '';
 
   private authService = inject(AuthService);
+  private destroyRef = inject(DestroyRef);
   private router = inject(Router);
 
   onSubmit() {
-    this.authService
+    const subscription = this.authService
       .signInWithEmail({ email: this.email, password: this.password })
       .subscribe({
         next: (data) => {
           console.log(data.user);
         },
       });
+
     this.router.navigate(['/catalogue']);
   }
 }

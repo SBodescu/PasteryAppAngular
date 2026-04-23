@@ -2,10 +2,11 @@ import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OrderComponent } from './components/order/order.component';
 import { Order } from './models/order.model';
 import { OrdersService } from './services/orders.service';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-orders',
-  imports: [OrderComponent],
+  imports: [OrderComponent, AsyncPipe],
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss',
 })
@@ -19,6 +20,9 @@ export class OrdersComponent implements OnInit {
 
   private ordersService = inject(OrdersService);
   private destroyRef = inject(DestroyRef);
+
+  isLoading$ = this.ordersService.loadingState$;
+  errorMessage$ = this.ordersService.errorState$;
 
   ngOnInit(): void {
     const fetchSubscription = this.ordersService.fetchOrders().subscribe();

@@ -2,17 +2,25 @@
   <h1>Orders Manager</h1>
   <p>Manage all customer orders here.</p>
   <div class="orders-container">
-    <div class="orders-list">
-      <app-order [ordersList]="displayedItems"></app-order>
-    </div>
-    <div class="pagination">
-      <button [disabled]="page === 0" (click)="pageDown()">Back</button>
+    @if (isLoading$ | async) {
+      <p>Products are loading...</p>
+    }
+    @if (errorMessage$ | async) {
+      <p>Error: {{ errorMessage$ }}</p>
+    }
+    @if (!(errorMessage$ | async) && !(isLoading$ | async)) {
+      <div class="orders-list">
+        <app-order [ordersList]="displayedItems"></app-order>
+      </div>
+      <div class="pagination">
+        <button [disabled]="page === 0" (click)="pageDown()">Back</button>
 
-      <span> Page {{ page + 1 }} of {{ totalPages }} </span>
+        <span> Page {{ page + 1 }} of {{ totalPages }} </span>
 
-      <button [disabled]="page >= totalPages - 1" (click)="pageUp()">
-        Next
-      </button>
-    </div>
+        <button [disabled]="page >= totalPages - 1" (click)="pageUp()">
+          Next
+        </button>
+      </div>
+    }
   </div>
 </div>

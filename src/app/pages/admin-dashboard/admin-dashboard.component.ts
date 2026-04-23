@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ProductsService } from '../products/services/products.service';
 import { ProductsComponent } from '../products/products.component';
 import { Product } from '../products/models/product.model';
@@ -17,6 +17,7 @@ import { EditProductModalComponent } from '../products/components/product/compon
 })
 export class AdminDashboardComponent implements OnInit {
   private productsService = inject(ProductsService);
+  private destroyRef = inject(DestroyRef);
   deletedProducts: Product[] = [];
   showDeletedItemsModal: boolean = false;
   showAddModal: boolean = false;
@@ -29,6 +30,9 @@ export class AdminDashboardComponent implements OnInit {
           (product) => product.isDeleted === true,
         );
       },
+    });
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 

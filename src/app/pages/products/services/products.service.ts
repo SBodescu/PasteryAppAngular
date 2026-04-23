@@ -10,17 +10,28 @@ import { BehaviorSubject, catchError, tap, throwError } from 'rxjs';
 export class ProductsService {
   private apiUrl = `${environment.supabaseUrl}/rest/v1/products`;
   private productsSubject = new BehaviorSubject<Product[]>([]);
+  private loadingStateSubject = new BehaviorSubject<boolean>(true);
+  private errorStateSubject = new BehaviorSubject<string | null>(null);
   private httpClient = inject(HttpClient);
   products$ = this.productsSubject.asObservable();
+  loadingState$ = this.loadingStateSubject.asObservable();
+  errorState$ = this.errorStateSubject.asObservable();
 
   fetchProducts() {
+    this.errorStateSubject.next(null);
+    this.loadingStateSubject.next(true);
     const url = `${this.apiUrl}?select=*`;
     return this.httpClient.get<Product[]>(url).pipe(
       tap({
-        next: (products) => this.productsSubject.next(products),
+        next: (products) => {
+          this.productsSubject.next(products);
+          this.loadingStateSubject.next(false);
+        },
       }),
       catchError((error) => {
         console.error('Supabase Error:', error);
+        this.errorStateSubject.next(error);
+        this.loadingStateSubject.next(false);
         return throwError(
           () => new Error('Something went wrong with fetching products'),
         );

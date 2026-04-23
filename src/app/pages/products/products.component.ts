@@ -5,10 +5,11 @@ import { ProductsService } from './services/products.service';
 import { FiltersComponent } from './components/filters/filters.component';
 import { FiltersService } from './services/filters.service';
 import { Filter } from './models/filter.model';
+import { AsyncPipe } from '@angular/common';
 
 @Component({
   selector: 'app-products',
-  imports: [ProductComponent, FiltersComponent],
+  imports: [ProductComponent, FiltersComponent, AsyncPipe],
   templateUrl: './products.component.html',
   styleUrl: './products.component.scss',
 })
@@ -28,23 +29,15 @@ export class ProductsComponent implements OnInit {
   page: number = 0;
   totalPages: number = 0;
 
-  isLoading: boolean = true;
-  errorMessage: string | null = null;
-
   private filtersService = inject(FiltersService);
   private productsService = inject(ProductsService);
   private destroyRef = inject(DestroyRef);
 
+  isLoading$ = this.productsService.loadingState$;
+  errorMessage$ = this.productsService.errorState$;
+
   ngOnInit(): void {
-    const fetchSubscription = this.productsService.fetchProducts().subscribe({
-      next: () => {
-        this.isLoading = false;
-      },
-      error: (err) => {
-        this.errorMessage = err.message;
-        this.isLoading = false;
-      },
-    });
+    const fetchSubscription = this.productsService.fetchProducts().subscribe();
     const prodSubscription = this.productsService.products$.subscribe({
       next: (data) => {
         this.productsList = data.filter((p) => p.isDeleted !== true);

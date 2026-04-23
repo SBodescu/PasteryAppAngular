@@ -10,17 +10,28 @@ import { HttpClient } from '@angular/common/http';
 export class OrdersService {
   private apiUrl = `${environment.supabaseUrl}/rest/v1/orders`;
   private ordersSubject = new BehaviorSubject<Order[]>([]);
+  private loadingStateSubject = new BehaviorSubject<boolean>(true);
+  private errorStateSubject = new BehaviorSubject<string | null>(null);
   private httpClient = inject(HttpClient);
   orders$ = this.ordersSubject.asObservable();
+  loadingState$ = this.loadingStateSubject.asObservable();
+  errorState$ = this.errorStateSubject.asObservable();
 
   fetchOrders() {
+    this.errorStateSubject.next(null);
+    this.loadingStateSubject.next(true);
     const url = `${this.apiUrl}?select=*`;
     return this.httpClient.get<Order[]>(url).pipe(
       tap({
-        next: (orders) => this.ordersSubject.next(orders),
+        next: (orders) => {
+          this.ordersSubject.next(orders);
+          this.loadingStateSubject.next(false);
+        },
       }),
       catchError((error) => {
         console.error('Supabase Error:', error);
+        this.errorStateSubject.next(error);
+        this.loadingStateSubject.next(false);
         return throwError(
           () => new Error('Something went wrong with fetching products'),
         );

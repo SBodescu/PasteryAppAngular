@@ -3,10 +3,13 @@
   <h1 class="main-title">Desserts</h1>
   <div class="products-list">
     <div class="product-list-container">
-      @if (isLoading) {
+      @if (isLoading$ | async) {
         <p>Products are loading...</p>
       }
-      @if (!errorMessage && !isLoading) {
+      @if (errorMessage$ | async) {
+        <p>Error: {{ errorMessage$ }}</p>
+      }
+      @if (!(errorMessage$ | async) && !(isLoading$ | async)) {
         <div class="product-list">
           @for (product of displayedItems; track product.id) {
             <app-product [product]="product"></app-product>
