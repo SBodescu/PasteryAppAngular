@@ -6,9 +6,9 @@ import {
   Input,
   OnInit,
 } from '@angular/core';
-import { ModalComponent } from '../../../../../../shared/components/modal/modal.component';
-import { ProductsService } from '../../../../services/products.service';
-import { Product } from '../../../../models/product.model';
+import { ModalComponent } from '@shared/components/modal/modal.component';
+import { ProductsService } from '@shared/services/products.service';
+import { Product } from '@shared/models/product.model';
 import { FormsModule } from '@angular/forms';
 
 @Component({

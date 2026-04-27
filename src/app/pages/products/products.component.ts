@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { ProductComponent } from './components/product/product.component';
-import { Product } from './models/product.model';
-import { ProductsService } from './services/products.service';
+import { Product } from '@shared/models/product.model';
+import { ProductsService } from '@shared/services/products.service';
 import { FiltersComponent } from './components/filters/filters.component';
 import { FiltersService } from './services/filters.service';
 import { Filter } from './models/filter.model';

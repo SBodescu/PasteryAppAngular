@@ -1,11 +1,11 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { CartItemComponent } from './components/cart-item/cart-item.component';
-import { CartService } from './services/cart.service';
-import { CartItem } from './models/cart-item.model';
+import { CartService } from '@shared/services/cart.service';
+import { CartItem } from '@shared/models/cart-item.model';
 import { RouterLink } from '@angular/router';
-import { OrdersService } from '../orders/services/orders.service';
-import { Order } from '../orders/models/order.model';
-import { AuthService } from '../../shared/services/auth.service';
+import { OrdersService } from '@shared/services/orders.service';
+import { Order } from '@shared/models/order.model';
+import { AuthService } from '@shared/services/auth.service';
 import { ConfirmationModalComponent } from './components/confirmation-modal/confirmation-modal.component';
 
 @Component({
@@ -24,7 +24,7 @@ export class CartComponent implements OnInit {
   cartItems: CartItem[] = [];
   totalCartValue = 0;
   userId: string = '';
-  isOpened: boolean = false;
+  showConfirmationModal: boolean = false;
 
   ngOnInit(): void {
     const authSubscription = this.authService.currentUser$.subscribe({
@@ -55,6 +55,6 @@ export class CartComponent implements OnInit {
       next: (order) => console.log('Order sent'),
     });
     this.cartService.clearCart();
-    this.isOpened = true;
+    this.showConfirmationModal = true;
   }
 }

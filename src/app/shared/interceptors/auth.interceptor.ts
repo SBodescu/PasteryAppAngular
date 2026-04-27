@@ -1,5 +1,5 @@
 import { HttpHandlerFn, HttpRequest } from '@angular/common/http';
-import { environment } from '../../../../api/supabaseClient';
+import { environment } from '@api/supabaseClient';
 
 export function authInterceptor(
   request: HttpRequest<unknown>,

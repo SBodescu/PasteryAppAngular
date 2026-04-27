@@ -1,9 +1,9 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
-import { ProductsService } from '../products/services/products.service';
+import { ProductsService } from '@shared/services/products.service';
 import { ProductsComponent } from '../products/products.component';
-import { Product } from '../products/models/product.model';
+import { Product } from '@shared/models/product.model';
 import { RecentlyDeletedModalComponent } from './components/recently-deleted-modal/recently-deleted-modal.component';
-import { EditProductModalComponent } from '../products/components/product/components/edit-product-modal/edit-product-modal.component';
+import { EditProductModalComponent } from '../products/components/edit-product-modal/edit-product-modal.component';
 
 @Component({
   selector: 'app-admin-dashboard',

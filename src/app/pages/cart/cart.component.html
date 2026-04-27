@@ -20,6 +20,6 @@
     </div>
   </div>
 </div>
-@if (isOpened) {
-  <app-confirmation-modal [isOpened]="isOpened"></app-confirmation-modal>
+@if (showConfirmationModal) {
+  <app-confirmation-modal (closeModal)="showConfirmationModal = false"></app-confirmation-modal>
 }

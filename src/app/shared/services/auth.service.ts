@@ -3,7 +3,7 @@ import { createClient, SupabaseClient } from '@supabase/supabase-js';
 
 import { BehaviorSubject, from, map, tap } from 'rxjs';
 import { LoginPayload } from '../models/user.model';
-import { environment } from '../../../../api/supabaseClient';
+import { environment } from '@api/supabaseClient';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({

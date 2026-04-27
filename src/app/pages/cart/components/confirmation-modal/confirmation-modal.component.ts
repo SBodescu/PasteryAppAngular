@@ -1,5 +1,5 @@
-import { Component, Input, inject } from '@angular/core';
-import { ModalComponent } from '../../../../shared/components/modal/modal.component';
+import { Component, Output, EventEmitter, inject } from '@angular/core';
+import { ModalComponent } from '@shared/components/modal/modal.component';
 import { Router } from '@angular/router';
 
 @Component({
@@ -9,12 +9,15 @@ import { Router } from '@angular/router';
   styleUrl: './confirmation-modal.component.scss',
 })
 export class ConfirmationModalComponent {
-  @Input({ required: true })
-  isOpened!: boolean;
+ 
+  @Output()
+  closeModal = new EventEmitter<void>();
 
   private router = inject(Router);
-  onCloseModal() {
-    this.isOpened = false;
+  
+
+   onCancel(): void {
+    this.closeModal.emit();
     this.router.navigate(['/catalogue']);
   }
 }

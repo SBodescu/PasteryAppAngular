@@ -1,7 +1,7 @@
 import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { OrderComponent } from './components/order/order.component';
-import { Order } from './models/order.model';
-import { OrdersService } from './services/orders.service';
+import { Order } from '@shared/models/order.model';
+import { OrdersService } from '@shared/services/orders.service';
 import { AsyncPipe } from '@angular/common';
 
 @Component({
